@@ -18,19 +18,19 @@ function App() {
         
         value={events, setEvents}>
         <div className="App">
-        <Link to="/instructorlogin/Register"></Link>
+        <Link to="/instructorlogin"></Link>
         <Link to="/classes"></Link>
             <Route exact path="/" component={ClientHeader} />
             <Route
-                path="/instructorclient"
+               exact path="/instructorclient"
             
                 component={InstructorClient}
             />
-            <Route exact path="/instructorlogin/Register" component={Register}/>
+            <Route exact path="/instructorlogin" component={Register}/>
             <Route path="/clientlogin" exact component={ClientLogin} />
             <Route path="/clientsignup" exact component={ClientSignUp} />
             <Route path="/classSearch" exact component={ClassSearch} />
-            <Route path="/classes" component={GetClasses}/>
+            <Route exact path="/classes" component={GetClasses}/>
         </div>
         </FitnessContext.Provider>
     );

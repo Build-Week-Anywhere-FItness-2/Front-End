@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import { NavLink, Link, Route, withRouter } from "react-router-dom";
-import Register from "./Register"
+
 
 
 
@@ -45,7 +45,7 @@ const Button = styled.button`
 export default function InstructorClient() {
     return (
         <InstructorClientChoice>
-            <NavLink>
+            <NavLink to = "/instructorlogin">
                 <Button>Instructor</Button>
             </NavLink>
            

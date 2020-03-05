@@ -21,9 +21,10 @@ const GetClasses = () => {
     
 
     const [classForm, setClassForm] =useState({
-    title:'',
-    instructorId:'',
-    categoryId:''
+    class_name:'',
+    description:'',
+    open_spots:'',
+    users_id: "",
 })
 const handleChange = e =>{
     setClassForm({...classForm, [e.target.name]: e.target.value})
@@ -49,9 +50,10 @@ const handleSubmit = (e) =>{
     .post('/api/classes', classForm)
     .then(res =>{
         setClassForm ({
-        title:'',
-        instructorId:'',
-        categoryId:''
+            class_name:'',
+            description:'',
+            open_spots:'',
+            users_id: "",
         })
         setEvents([...events, res.data])
         setClasses([...classes, res.data])
@@ -87,37 +89,48 @@ const handleDelete = id =>{
           <div key ={classForm.id}>
               <br/>
               <Boxes>
-              <h4>Workout: <p>{classForm.title}</p></h4>
-          <h4>Instructor Id: <p>{classForm.instructorId}</p></h4>
-          <h4>Category Id: <p>{classForm.categoryId}</p></h4>
-          <button onClick ={() => handleDelete(classForm.id)}>Delete</button>
+              <h4>Class Name: <p>{classForm.class_name}</p></h4>
+          <h4>Description: <p>{classForm.description}</p></h4>
+          <h4>Open Spots: <p>{classForm.open_spots}</p></h4>
+          <h4>Users ID: <p>{classForm.users_id}</p></h4>
+          
           </Boxes>
           </div>)}
           <form onSubmit={handleSubmit}>
                 <h5> Add a Class</h5>
                 <input type='text'
-                name='title'
-                placeholder='Class'
-                value={classForm.title}
+                name='Class Name'
+                placeholder='Class Name'
+                value={classForm.class_name}
                 onChange={handleChange}
                 />
                 <br/>
                 <input type='text'
-                name='instructorId'
-                placeholder='Instructor'
-                value={classForm.instructorId}
+                name='Description'
+                placeholder='Description'
+                value={classForm.description}
                 onChange={handleChange}
                 />
                 <br/>
                 <input type='text'
-                name='categoryId'
-                placeholder='Category'
-                value={classForm.categoryId}
+                name='open_spots'
+                placeholder='Open Spots'
+                value={classForm.open_spots}
                 onChange={handleChange}
                 />
                 <br/>
+                <input type='text'
+                name='users ID'
+                placeholder='users ID'
+                value={classForm.users_id}
+                onChange={handleChange}
+                />
+
                 <br/>
                 <button type='submit'>Add new class</button>
+                <button onClick ={() => 
+                    handleDelete(classForm.id)}>Delete Class</button>
+                <button type= "submit">Update Class</button>
             </form>
         </div>
     )
