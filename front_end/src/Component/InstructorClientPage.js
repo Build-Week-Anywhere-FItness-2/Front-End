@@ -1,6 +1,9 @@
 import React from "react";
 import styled from "styled-components";
-import { NavLink } from "react-router-dom";
+import { NavLink, Link, Route, withRouter } from "react-router-dom";
+
+
+
 
 const InstructorClientChoice = styled.section`
     display: flex;
@@ -42,12 +45,14 @@ const Button = styled.button`
 export default function InstructorClient() {
     return (
         <InstructorClientChoice>
-            <NavLink to="/instructorlogin">
+            <NavLink to = "/instructorlogin">
                 <Button>Instructor</Button>
             </NavLink>
+           
             <NavLink to="/clientlogin">
                 <Button>Client</Button>
             </NavLink>
+           
         </InstructorClientChoice>
     );
 }

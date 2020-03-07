@@ -4,6 +4,7 @@ import axios from "axios";
 import { Form, Field, withFormik } from "formik";
 import * as Yup from "yup";
 import styled from "styled-components";
+import { AxiosWithAuth } from "../utils/AxiosWithAuth";
 
 const Button = styled.button`
     box-shadow: 0px 1px 0px 0px #f0f7fa;
@@ -81,8 +82,8 @@ const FormikLoginForm = withFormik({
     }),
     handleSubmit(values, { resetForm, setStatus }) {
         console.log("submitting login", values);
-        axios
-            .post("https://reqres.in/api/users/", values)
+        AxiosWithAuth()
+            .post("/api/auth/login", values)
             .then(res => {
                 console.log("success", res);
                 setStatus(res.data);
