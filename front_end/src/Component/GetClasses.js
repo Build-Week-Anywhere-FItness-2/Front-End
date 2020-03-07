@@ -2,6 +2,8 @@ import React, {useState, useEffect, useContext} from 'react';
 import FitnessContext from '../contexts/FitnessContext'
 import {AxiosWithAuth} from './utils/AxiosWithAuth';
 import styled from 'styled-components';
+import UpdateClasses from "./UpdateClasses"
+
 const Boxes = styled.div `
 display: flex;
 font-size: 15px;
@@ -13,10 +15,11 @@ margin: auto;
 padding: 5px;
 border: 5px solid #cedad9;
 `
+
 //THIS IS FOR THE INSTRUCTOR TO CREATE A NEW CLASS
 const GetClasses = () => {
     const {events, setEvents} = useContext(FitnessContext);
-    console.log(useContext(FitnessContext))
+    
     const [classes, setClasses] = useState([])
     
 
@@ -25,6 +28,7 @@ const GetClasses = () => {
     description:'',
     open_spots:'',
     users_id: "",
+ 
 })
 const handleChange = e =>{
     setClassForm({...classForm, [e.target.name]: e.target.value})
@@ -40,7 +44,7 @@ useEffect(()=>{
     .catch(err =>{
         console.log(err)
     });
-}, []);
+}, [classes]);
 // const handleNumberChange = e =>{
 //     key=Number(e.target.value);
 // }
@@ -49,6 +53,7 @@ const handleSubmit = (e) =>{
     AxiosWithAuth()
     .post('/api/classes', classForm)
     .then(res =>{
+        console.log(res)
         setClassForm ({
             class_name:'',
             description:'',
@@ -84,6 +89,7 @@ const handleDelete = id =>{
 //SET STATE TO RESPONSE
     return(
         <div className='classes'>
+           
             <h2>Class I've created</h2>
                 {classes.map(classForm=>
           <div key ={classForm.id}>
@@ -93,20 +99,22 @@ const handleDelete = id =>{
           <h4>Description: <p>{classForm.description}</p></h4>
           <h4>Open Spots: <p>{classForm.open_spots}</p></h4>
           <h4>Users ID: <p>{classForm.users_id}</p></h4>
+     
+          <UpdateClasses id={classForm.id}/>
           
           </Boxes>
           </div>)}
           <form onSubmit={handleSubmit}>
                 <h5> Add a Class</h5>
                 <input type='text'
-                name='Class Name'
+                name='class_name'
                 placeholder='Class Name'
                 value={classForm.class_name}
                 onChange={handleChange}
                 />
                 <br/>
                 <input type='text'
-                name='Description'
+                name='description'
                 placeholder='Description'
                 value={classForm.description}
                 onChange={handleChange}
@@ -120,12 +128,12 @@ const handleDelete = id =>{
                 />
                 <br/>
                 <input type='text'
-                name='users ID'
+                name='user_id'
                 placeholder='users ID'
-                value={classForm.users_id}
+                value={classForm.user_id}
                 onChange={handleChange}
                 />
-
+      
                 <br/>
                 <button type='submit'>Add new class</button>
                 <button onClick ={() => 

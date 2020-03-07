@@ -45,7 +45,7 @@ const Button = styled.button`
 export default function InstructorClient() {
     return (
         <InstructorClientChoice>
-            <NavLink to = "/instructorlogin">
+            <NavLink to = "/Register">
                 <Button>Instructor</Button>
             </NavLink>
            
