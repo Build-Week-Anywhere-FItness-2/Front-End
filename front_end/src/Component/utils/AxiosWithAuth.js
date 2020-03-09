@@ -1,16 +1,19 @@
 import axios from "axios";
 export function getToken(){
+
     return localStorage.getItem("token")
+
 }
+console.log(getToken())
 export const AxiosWithAuth=()=>{
     // const token= localStorage.getItem("token");
 
     return axios.create(
         {
-            baseURL: "https://lambda-anywhere-fitness.herokuapp.com/",
+            baseURL: 'https://anywherefitnessbuildweek.herokuapp.com/',
             headers:{
                 "Content-Type": 'application/json',
-                "Authorization": getToken(),
+                "authorization": getToken(),
             },
         }
     );
