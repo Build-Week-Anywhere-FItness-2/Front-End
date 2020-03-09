@@ -18,6 +18,8 @@ function Login(props){
         .then((result)=>{
             console.log(result.data)
             localStorage.setItem("token", result.data.token) 
+            localStorage.setItem("status", result.data.trainer_status)
+            localStorage.setItem("user", result.data.user_id) 
             props.history.push("/classes")
         }
             
